@@ -1,5 +1,7 @@
 package pgm_final;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,10 +11,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.stream.Stream;
+import javax.swing.JOptionPane;
 public class FlashcardTestingApplication{
     //GLOBAL VARIABLES----------------------------------------------------------
     static FileSystem fs;
+    static Scanner keyboard=new Scanner(System.in);
     static Path pathToFile;
     static InputStream fileIn=null;
     static BufferedReader fileReader;
@@ -22,8 +27,25 @@ public class FlashcardTestingApplication{
         readFile();
         displayDeck(0);
         displayDeck(1);
+        displayDeck(2);
     }
     //PROGRAM FUNCTIONS---------------------------------------------------------
+   public static void createDeck(){
+       ArrayList<Flashcard>newDeck=new ArrayList<Flashcard>();
+       Flashcard newCard;
+       System.out.print("How many cards do you want in this deck? ");
+       int numOfCards=keyboard.nextInt();
+       keyboard.nextLine();
+       for(int i=0;i<numOfCards;i++){
+           newCard=new Flashcard();
+           System.out.print("Enter data for side 1: ");
+           newCard.setSide1(keyboard.nextLine());
+           System.out.print("Enter data for side 2: ");
+           newCard.setSide2(keyboard.nextLine());
+           newDeck.add(newCard);
+       }
+       writeToFile(newDeck);
+   }
     public static void readFile(){
         long numOfDecks=countDecks();
         System.out.println(numOfDecks);
@@ -38,7 +60,7 @@ public class FlashcardTestingApplication{
                fileReader=new BufferedReader(new InputStreamReader(fileIn));
                //READ THE FIEL
                while((line=fileReader.readLine())!=null){
-                   String records[]=line.split(",");
+                   String records[]=line.split("<μετάβαση>");//GREEK WORD FOR TANSITION
                    aCard=new Flashcard();
                    try{
                        aCard.setSide1(records[0]);
@@ -55,6 +77,28 @@ public class FlashcardTestingApplication{
                 System.out.println("Cannot open "+pathToFile.getFileName());
                 System.exit(1);
             }
+        }
+    }
+    public static void writeToFile(ArrayList<Flashcard> aDeck){
+        long numOfDecks=countDecks();
+        String fileName=System.getProperty("user.dir")+"\\src\\flashcardDecks\\deck"+numOfDecks+".txt";
+        String outputLine;
+        File file=new File(fileName);
+        try{
+            FileWriter fileOut=new FileWriter(file);
+            for(int i=0;i<aDeck.size();i++){
+                    /*%d = integer
+                    %f = float or double
+                    %s = string
+                    %n = newline*/
+                outputLine=String.format("%s<μετάβαση>%s\n",
+                        aDeck.get(i).getSide1(),
+                        aDeck.get(i).getSide2());
+                fileOut.write(outputLine);
+            }
+            fileOut.close();
+        } catch (IOException ex){
+            JOptionPane.showMessageDialog(null,"Cannot write comapny file\n"+ex.getMessage(),"File IO Error",JOptionPane.ERROR_MESSAGE);
         }
     }
     public static void displayDeck(int deckNum){//DISPLAY THE CONTENTS OF THE DECK REQUESTED BY THE INT

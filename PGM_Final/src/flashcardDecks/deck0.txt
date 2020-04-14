@@ -1,10 +1,10 @@
-Patrician,The nobility of Ancient Rome
-Plebeian,The common people of Ancient Rome
-Civil Law,The written set of laws for Ancient Rome
-Checks and Balances,A system to prevent one branch of government from becoming too powerful
-Latin,The language of Ancient Rome
-Peninsula,Land surrounded by water on three sides
-Romulus,Killed his brother and named the city they built after himself...Rome
-Remus,Was killed by his brother Romulus
-Cincinnatus,Roman Dictator who gave up his power once his job was done
-Roman Senate,A council of wealthy and powerful Romans that advised the city's leaders. Served for life
+Patrician<μετάβαση>The nobility of Ancient Rome
+Plebeian<μετάβαση>The common people of Ancient Rome
+Civil Law<μετάβαση>The written set of laws for Ancient Rome
+Checks and Balances<μετάβαση>A system to prevent one branch of government from becoming too powerful
+Latin<μετάβαση>The language of Ancient Rome
+Peninsula<μετάβαση>Land surrounded by water on three sides
+Romulus<μετάβαση>Killed his brother and named the city they built after himself...Rome
+Remus<μετάβαση>Was killed by his brother Romulus
+Cincinnatus<μετάβαση>Roman Dictator who gave up his power once his job was done
+Roman Senate<μετάβαση>A council of wealthy and powerful Romans that advised the city's leaders. Served for life
